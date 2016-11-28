@@ -13,6 +13,9 @@ class KonzolaTest extends \Zazalt\Konzola\Tests\ZazaltTest
 
     public function testColors()
     {
-        $this->assertEquals(\Zazalt\Konzola\Konzola::text('caca')->color('yellow')->bg('green')->tabs(0)->lines(0), \Zazalt\Konzola\Konzola::text('caca')->bg('green')->color('yellow')->tabs(0)->lines(1));
+        $this->assertEquals(
+            \Zazalt\Konzola\Konzola::text('caca')->color('yellow')->bg('green')->tabs(0)->lines(1),
+            \Zazalt\Konzola\Konzola::text('caca')->bg('green')->color('yellow')->tabs(0)->lines(1)
+        );
     }
 }
