@@ -1,0 +1,38 @@
+{
+    "name": "zazalt/konzola",
+    "description": "Konzola",
+    "homepage": "https://github.com/Zazalt/Konzola",
+    "keywords": [
+        "string"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zazalt",
+            "email": "example@example.com",
+            "homepage": "https://github.com/Zazalt/Konzola"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zazalt\\Konzola\\": "src/"
+        }
+    },
+    "extra": {
+        "zazalt": {
+            "language": "php",
+            "title": "Konzola",
+            "description": [
+                ""
+            ],
+            "github": "Zazalt",
+            "repository": "Konzola",
+            "version": "beta",
+            "generateUsage": false,
+            "examples": true
+        }
+    }
+}
