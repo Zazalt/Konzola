@@ -2,7 +2,7 @@
 
 namespace Zazalt\Konzola;
 
-class Konsola
+class Konzola
 {
     protected $string;
 
