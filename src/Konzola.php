@@ -1,6 +1,6 @@
 <?php
 
-namespace Zazalt\Strink;
+namespace Zazalt\Konzola;
 
 class Konsola
 {
