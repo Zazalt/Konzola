@@ -2,6 +2,8 @@
 
 namespace Zazalt\Konzola\Tests;
 
+use Zazalt\Konzola\Konzola;
+
 class KonzolaTest extends \Zazalt\Konzola\Tests\ZazaltTest
 {
     protected $that;
@@ -13,9 +15,18 @@ class KonzolaTest extends \Zazalt\Konzola\Tests\ZazaltTest
 
     public function testColors()
     {
-        $this->assertEquals(
-            \Zazalt\Konzola\Konzola::text('caca')->color('yellow')->bg('green')->tabs(0)->lines(1),
-            \Zazalt\Konzola\Konzola::text('caca')->bg('green')->color('yellow')->tabs(0)->lines(1)
-        );
+        $Konzola = new Konzola('test');
+
+        foreach ($Konzola->colors as $colorName => $colorCode) {
+            foreach ($Konzola->bgs as $bgName => $bgColor) {
+                $tabs = mt_rand(0, 5);
+
+                // Test reversed order parameter
+                $this->assertEquals(
+                    $Konzola->color($colorName)->bg($bgColor)->tabs($tabs),
+                    $Konzola->bg($bgColor)->color($colorName)->tabs($tabs)
+                );
+            }
+        }
     }
 }
