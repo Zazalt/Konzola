@@ -25,19 +25,53 @@ class Konzola
     /**
      * Return all arguments
      */
-    public function getArguments()
+    public function getArguments($argumentName = null)
     {
+        global $argv;
 
+        if(is_array($argv) && count($argv) > 2) {
+            $argumentsList = $this->parseArguments(array_slice($argv, 2));
+
+            if($argumentName) {
+                return $argumentsList[$argumentName];
+            }
+
+            return $argumentsList;
+        }
     }
 
     /**
-     * Return a specific argument
+     * Parse a list of arguments
      *
-     * @param $argumentName string
+     * @param array $arguments
+     * @return array
+     */
+    private function parseArguments(array $arguments)
+    {
+        $return = [];
+        $args = explode(' -', implode(' ', $arguments));
+        foreach ($args as $arg) {
+            $arg = ltrim($arg, '-');
+            if(strpos($arg, ' ')) {
+                list($key, $value) = explode(' ', $arg);
+                $return[$key] = $value;
+            } else {
+                $return[$arg] = true;
+            }
+        }
+
+        return $return;
+    }
+
+    /**
+     * Return a specific argument by name
+     *
+     * @param $argumentName
+     * @return string
      */
     public function getArgument($argumentName)
     {
-
+        return $this->getArguments($argumentName);
     }
 
     public static function text($string)
@@ -94,12 +128,6 @@ class Konzola
 
         $cStyle = addcslashes($this->string, "\0..\37!@\177..\377");
         $found = preg_match_all('/\[(\d);(\d+)m/i', $cStyle, $matches);
-
-        if(0) {
-            echo $cStyle ."\n";
-            print_r($matches);
-            die;
-        }
 
         if($found) {
             $this->string = addcslashes($this->string, "\0..\37!@\177..\377");

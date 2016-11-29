@@ -29,4 +29,20 @@ class KonzolaTest extends \Zazalt\Konzola\Tests\ZazaltTest
             }
         }
     }
+
+    public function testParseArguments()
+    {
+        $arguments = [
+            '-a --b --c test -d test2' => [
+                'a' => true,
+                'b' => true,
+                'c' => 'test',
+                'd' => 'test2'
+            ]
+        ];
+
+        foreach ($arguments as $required => $expected) {
+            $this->assertEquals($required, $required);
+        }
+    }
 }
