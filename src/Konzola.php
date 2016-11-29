@@ -206,7 +206,7 @@ class Konzola
     {
         foreach ($this->colors as $colorName => $colorCode) {
             foreach ($this->bgs as $bgName => $bgColor) {
-                echo $this->color($colorName)->bg($bgColor)->lines(1);
+                echo $this->color($colorName)->bg($bgName)->lines(1);
             }
         }
     }
