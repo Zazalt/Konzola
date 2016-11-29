@@ -6,7 +6,7 @@ class Konzola
 {
     protected $string;
 
-    public function __construct($string)
+    public function __construct($string = null)
     {
         $this->string = $string;
     }
@@ -16,7 +16,10 @@ class Konzola
      */
     public function getCommand()
     {
-
+        global $argv;
+        if(is_array($argv) && count($argv) > 1) {
+            return $argv[1];
+        }
     }
 
     /**
