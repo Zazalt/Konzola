@@ -67,7 +67,7 @@ class Konzola
         'blue' => 44,
         'magenta' => 45,
         'cyan' => 46,
-        'lightCyan => 47'
+        'lightCyan' => 47
     ];
 
     public function color($color)
@@ -78,56 +78,6 @@ class Konzola
         }
 
         return new static(sprintf('%s%s', "\033[{$code}m", $this->string));
-/*
-        switch ($color) {
-            case 'black':
-                $code = '0;30'; break;
-
-            case 'blue':
-                $code = '0;34'; break;
-
-            case 'lightBlue':
-                $code = '1;34'; break;
-
-            case 'green':
-                $code = '0;32'; break;
-
-            case 'lightGreen':
-                $code = '1;32'; break;
-
-            case 'cyan':
-                $code = '0;36'; break;
-
-            case 'red':
-                $code = '0;31'; break;
-
-            case 'lightRed':
-                $code = '1;31'; break;
-
-            case 'purple':
-                $code = '0;35'; break;
-
-            case 'lightPurple':
-                $code = '1;35'; break;
-
-            case 'brown':
-                $code = '0;33'; break;
-
-            case 'yellow':
-                $code = '1;33'; break;
-
-            case 'lightGray':
-                $code = '0;37'; break;
-
-            case 'white':
-                $code = '1;37'; break;
-
-            default:
-                $code = '0;30'; break;
-        }
-
-        return new static(sprintf('%s%s', "\033[{$code}m", $this->string));
-*/
     }
 
     public function bg($color)
@@ -136,37 +86,6 @@ class Konzola
         if(array_key_exists($color, $this->bgs)) {
             $code = $this->bgs[$color];
         }
-
-        /*
-        switch ($color) {
-            case 'black':
-                $code = 40; break;
-
-            case 'red':
-                $code = 41; break;
-
-            case 'green':
-                $code = 42; break;
-
-            case 'yellow':
-                $code = 43; break;
-
-            case 'blue':
-                $code = 44; break;
-
-            case 'magenta':
-                $code = 45; break;
-
-            case 'cyan':
-                $code = 46; break;
-
-            case 'lightCyan':
-                $code = 47; break;
-
-            default:
-                $code = 40; break;
-        }
-        */
 
         $cStyle = addcslashes($this->string, "\0..\37!@\177..\377");
         $found = preg_match_all('/\[(\d);(\d+)m/i', $cStyle, $matches);
@@ -204,10 +123,25 @@ class Konzola
 
     public function rainbow()
     {
+        echo "Text color:\n";
+        foreach ($this->colors as $colorName => $colorCode) {
+            echo $this::text($this . " - {$colorName}")->color($colorName)->tabs(1)->lines(1);
+        }
+
+
+        echo "\n\nBackground color:\n";
+
+        foreach ($this->bgs as $bgName => $bgColor) {
+            echo $this::text($this . " - {$bgName}")->bg($bgName)->tabs(1)->lines(1);
+        }
+
+        echo "\n\nThe rainbow:\n";
+
         foreach ($this->colors as $colorName => $colorCode) {
             foreach ($this->bgs as $bgName => $bgColor) {
-                echo $this->color($colorName)->bg($bgName)->lines(1);
+                echo $this->color($colorName)->bg($bgName)->lines(0)->tabs(1);
             }
+            echo "\n";
         }
     }
 
