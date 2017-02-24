@@ -10,7 +10,7 @@ class KonzolaTest extends \Zazalt\Konzola\Tests\ZazaltTest
 
     public function __construct()
     {
-        parent::loader($this, []);
+        parent::loader(Konzola::class, []);
     }
 
     public function testColors()

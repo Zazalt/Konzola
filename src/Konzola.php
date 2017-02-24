@@ -14,7 +14,7 @@ class Konzola
     /**
      * Return the given command
      */
-    public function getCommand()
+    public function getCommand(): string
     {
         global $argv;
         if(is_array($argv) && count($argv) > 1) {
@@ -46,7 +46,7 @@ class Konzola
      * @param array $arguments
      * @return array
      */
-    private function parseArguments(array $arguments)
+    private function parseArguments(array $arguments): array
     {
         $return = [];
         $args = explode(' -', implode(' ', $arguments));
@@ -69,12 +69,12 @@ class Konzola
      * @param $argumentName
      * @return string
      */
-    public function getArgument($argumentName)
+    public function getArgument(string $argumentName): string
     {
         return $this->getArguments($argumentName);
     }
 
-    public static function text($string)
+    public static function text(string $string): string
     {
         return new static($string);
     }
