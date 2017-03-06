@@ -74,7 +74,7 @@ class Konzola
         return $this->getArguments($argumentName);
     }
 
-    public static function text(string $string): string
+    public static function text(string $string): Konzola
     {
         return new static($string);
     }
